@@ -1,0 +1,20 @@
+name: MusicBox
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 * * * *'  # hourly
+jobs:
+  musicbox:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: jacc/music-box
+      - run: npm install
+      - name: Update
+        uses: ./
+        env:
+          LASTFM_KEY: ${{ secrets.LASTFM_KEY }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          LFMUSERNAME: ${{ secrets.LFMUSERNAME }}
+          GIST_ID: ${{ secrets.GIST_ID_LFM }}
