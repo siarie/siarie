@@ -6,11 +6,15 @@ on:
     - cron: '0 0 * * *'  # Runs at 00:00 UTC every day
 
 jobs:
-  build:
+  spotify-box:
     runs-on: ubuntu-latest
     steps:
-      - name: rhythm-box
-        uses: Aveek-Saha/spotify-box@v1
+      - uses: actions/checkout@v2
+        with:
+          repository: Aveek-Saha/spotify-box
+      - run: npm install
+      - name: Update
+        uses: ./
         env:
           GIST_ID: ${{ secrets.GIST_ID }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
