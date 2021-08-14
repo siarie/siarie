@@ -3,7 +3,7 @@ name: Rythm Box
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *'  # Runs every hour
+    - cron: '0 0 * * *'  # Runs every hour
   push:
     branches: master
 jobs:
